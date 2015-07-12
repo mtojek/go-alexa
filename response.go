@@ -34,7 +34,8 @@ type EchoCard struct {
 
 func NewResponse() *EchoResponse {
 	er := &EchoResponse{
-		Version: "1.0",
+		Version:           "1.0",
+		SessionAttributes: make(map[string]interface{}),
 		Response: EchoRespBody{
 			ShouldEndSession: true,
 		},
