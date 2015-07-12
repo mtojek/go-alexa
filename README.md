@@ -73,3 +73,4 @@ Amazon requires an SSL connection for all steps in the Skill process, even local
 ### Contributors
 
 Mike Flynn ([@thatmikeflynn](https://twitter.com/thatmikeflynn))
+Tom Buckley
