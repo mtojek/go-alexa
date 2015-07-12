@@ -1,4 +1,4 @@
-## `go-alexa/skillserver`
+## `go-alexa`
 
 A simple Go framework to quickly create an Amazon Alexa Skills web service.
 
@@ -12,18 +12,18 @@ You can see the SDK documentation here: [developer.amazon.com/public/solutions/a
 
 Amazon has a list of requirements to get a new Skill up and running
 
-1. Creating your new Skill on their Development Dashboard populating it with details and example phrases. That process is documented here: [developer.amazon.com/appsandservices/solutions/alexa/alexa-skills-kit/docs/defining-the-voice-interface](https://developer.amazon.com/appsandservices/solutions/alexa/alexa-skills-kit/docs/defining-the-voice-interface)
-2. A lengthy request validation proces. Documented here: 
+1. Creating your new Skill on their Development Dashboard populating it with details and example phrases. That process is documented [here](https://developer.amazon.com/appsandservices/solutions/alexa/alexa-skills-kit/docs/defining-the-voice-interface)
+2. A lengthy request validation proces. Documented [here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/developing-an-alexa-skill-as-a-web-service#Verifying that the Request was Sent by Alexa)
 3. A formatted JSON response.
 4. SSL connection required, even for development.
 
-### How `skillserver` Helps
+### How `go-alexa` Helps
 
-The `go-alexa/skillserver` takes care of #2 and #3 for you so you can concentrate on #1 and coding your app. (#4 is what it is. See the section on SSL below.)
+`go-alexa` takes care of #2 and #3 for you so you can concentrate on #1 and coding your app. (#4 is what it is. See the section on SSL below.)
 
 ### An Example App
 
-Creating an Alexa Skill web service is easy with `go-alexa/skillserver`. Simply import the project as any other Go project, define your app, and write your endpoint. All the web service, security checks, and assistance in creating the response objects are done for you.
+Creating an Alexa Skill web service is easy with `go-alexa`. Simply import the project as any other Go project, define your app, and write your endpoint. All the security checks, request parsing, and response formating are done for you.
 
 Here's a simple, but complete web service example:
 
@@ -76,10 +76,8 @@ func EchoHelloWorld(w http.ResponseWriter, r *http.Request) {
 ```
 
 Details:
-* You define your endpoints by creating a `map[string]interface{}` and loading it with `EchoApplication` types that specify the Application ID and handler function.
-* All Skill endpoints must start with `/echo/` as that's the route grouping that has the security middleware.
 * Your handler is a regular `net/http` handler so you have full access to the request and ResponseWriter.
-* The JSON from the Echo request is already parsed for you. Grab it by calling `skillserver.GetEchoRequest(r *http.Request)`.
+* The JSON from the Echo request is already parsed for you. Grab it by calling `alexa.GetEchoRequest(r *http.Request)`.
 * You generate the Echo Response by using the EchoResponse struct that has methods to generate each part and, when ready, to return it as a JSON string that you can send back as the response.
 
 ### The SSL Requirement
