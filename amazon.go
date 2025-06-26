@@ -107,10 +107,6 @@ func readCert(certURL string) ([]byte, error) {
 }
 
 func verifyCertURL(path string) bool {
-	if !strings.HasSuffix(path, "/echo.api/echo-api-cert.pem") {
-		return false
-	}
-
 	if !strings.HasPrefix(path, "https://s3.amazonaws.com/echo.api/") && !strings.HasPrefix(path, "https://s3.amazonaws.com:443/echo.api/") {
 		return false
 	}
